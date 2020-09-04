@@ -18,5 +18,5 @@ def generate_weighted_edge_list(df):
 
 g = Graph(generate_weighted_edge_list(df))
 g.greedy_tsp(start)
-
+g.brute_force_tsp(start)
 # g.draw()
