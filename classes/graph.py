@@ -35,6 +35,7 @@ class Graph:
         return 1+randint(0,15)
 
     def brute_force_tsp(self, start):
+        print('--- BRUTE FORCE TSP ---')
         possible_path_permutations = self.generate_paths_from(start)
         paths_and_weights = []
         for path in possible_path_permutations:
@@ -43,11 +44,12 @@ class Graph:
 
         paths_and_weights = sorted(paths_and_weights, key=lambda path: path[1])
 
-        print(paths_and_weights)
-        print(paths_and_weights[0])
+        print('Visit order: ', paths_and_weights[0][0])
+        print('Total weight: ', paths_and_weights[0][1])
     
 
     def greedy_tsp(self, start):
+        print('--- GREEDY TSP ---')
         visited = []
         total_weight = 0
         current = start
