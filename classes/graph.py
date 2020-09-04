@@ -31,11 +31,13 @@ class Graph:
         return paths
 
     def calculate_path_weight(self, path):
-        # TODO: implement path weight calculation
-        return 1+randint(0,15)
+        sum_weights = 0
+        for i in range(len(path)-1):
+            sum_weights += self.G[path[i]][path[i+1]]['weight']
+        return sum_weights
 
     def brute_force_tsp(self, start):
-        print('--- BRUTE FORCE TSP ---')
+        print('\n--- BRUTE FORCE TSP ---')
         possible_path_permutations = self.generate_paths_from(start)
         paths_and_weights = []
         for path in possible_path_permutations:
@@ -44,12 +46,14 @@ class Graph:
 
         paths_and_weights = sorted(paths_and_weights, key=lambda path: path[1])
 
-        print('Visit order: ', paths_and_weights[0][0])
-        print('Total weight: ', paths_and_weights[0][1])
+        for i in range(len(paths_and_weights)):
+            print('Visit order: ', paths_and_weights[i][0])
+            print('Total weight: ', paths_and_weights[i][1])
+            print()
     
 
     def greedy_tsp(self, start):
-        print('--- GREEDY TSP ---')
+        print('\n--- GREEDY TSP ---')
         visited = []
         total_weight = 0
         current = start
