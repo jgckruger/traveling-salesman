@@ -18,12 +18,12 @@ class Graph:
 
     def draw(self, route = [], name = "Normal Graph"):
         plt.figure(name)
-        edges = []
+        red_edges = []
         for index, node in enumerate(route):
-            if(index+1 < len(route) ):
-                edges.append((route[index],route[index+1]))
+            if(index + 1 < len(route) ):
+                red_edges.append((route[index],route[index+1]))
         
-        black_edges = [edge for edge in self.G.edges() if edge not in edges]
+        black_edges = [edge for edge in self.G.edges() if edge not in red_edges]
 
         if(len(self.G) <= 4):
             node_pos = nx.planar_layout(self.G)
@@ -31,10 +31,10 @@ class Graph:
             node_pos = nx.circular_layout(self.G)
 
         arc_weight = nx.get_edge_attributes(self.G, 'weight')
+        nx.draw_networkx_nodes(self.G, node_pos, cmap=plt.get_cmap('jet'), node_size = 450)
         nx.draw_networkx_labels(self.G, node_pos)
         nx.draw_networkx_edge_labels(self.G, node_pos, edge_labels=arc_weight)
-        nx.draw_networkx_nodes(self.G, node_pos, cmap=plt.get_cmap('jet'), node_size = 450)
-        nx.draw_networkx_edges(self.G, node_pos, edgelist=edges, edge_color='r', arrows=True)
+        nx.draw_networkx_edges(self.G, node_pos, edgelist=red_edges, edge_color='r', arrows=True)
         nx.draw_networkx_edges(self.G, node_pos, edgelist=black_edges, arrows=False)
 
     def generate_paths_from(self, start):
