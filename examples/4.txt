@@ -1,0 +1,6 @@
+New York,Los Angeles,Chicago,Minneapolis
+-1, 2451, 713, 1018
+2451, -1, 1745, 1524
+713, 1745, -1, 355
+1018, 1524, 355, -1
+New York
