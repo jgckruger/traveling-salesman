@@ -1,9 +1,17 @@
+import sys
 import pandas as pd
 import matplotlib.pyplot as plt
 import time
 from classes.graph import Graph
+import warnings
+warnings.simplefilter(action='ignore', category=FutureWarning)
 
-df = pd.read_csv('input.txt')
+try:
+    filepath = sys.argv[1]
+except:
+    filepath = './examples/5.txt'
+
+df = pd.read_csv(filepath)
 start = df.iloc[-1][0]
 df = df[:-1]
 df.index = df.columns.tolist()
@@ -31,6 +39,6 @@ g.brute_force_tsp(start)
 endTime = time.time()
 print('Brute force:', endTime-startTime, 'seconds')
 
-g.draw()
-plt.axis('off')
-plt.show()
+# g.draw()
+# plt.axis('off')
+# plt.show()
